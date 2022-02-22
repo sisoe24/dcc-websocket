@@ -1,0 +1,103 @@
+{
+	"name": "dcc-websocket",
+	"displayName": "DCC Websocket",
+	"description": "Websocket connection to send code into your favorite DCC Package",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.64.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"license": "MIT",
+	"keywords": [
+		"nuke",
+		"maya",
+		"houdini",
+		"3DS",
+		"Blender"
+	],
+	"preview": true,
+	"activationEvents": [
+		"onStartupFinished"
+	],
+	"browser": "./dist/web/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "dcc-websocket.sendCode",
+				"title": "Send code to socket",
+				"icon": {
+					"dark": "images/play-dark.svg",
+					"light": "images/play-light.svg"
+				},
+				"enablement": "resourceLangId =~ /python|cpp/ || resourceExtname == .blink || resourceScheme == untitled"
+			}
+		],
+		"configuration": [
+			{
+				"title": "DCC WebSocket",
+				"properties": {
+					"nukeTools.network.host": {
+						"type": "string",
+						"default": "localhost",
+						"markdownDescription": "Specify the host for the connection."
+					},
+					"nukeTools.network.port": {
+						"type": "string",
+						"default": "54321",
+						"markdownDescription": "Specify the port for the connection."
+					},
+					"nukeTools.other.clearPreviousOutput": {
+						"type": "boolean",
+						"default": true,
+						"markdownDescription": "Clear output after each code execution."
+					},
+					"nukeTools.network.debug": {
+						"type": "boolean",
+						"default": false,
+						"markdownDescription": "Show debugging information the in output window."
+					}
+				}
+			}
+		],
+		"menus": {
+			"editor/title": [
+				{
+					"when": "resourceLangId =~ /python|cpp/ || resourceExtname == .blink || resourceScheme == untitled",
+					"command": "dcc-websocket.sendCode",
+					"group": "navigation"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
+		"pretest": "npm run compile-web",
+		"vscode:prepublish": "npm run package-web",
+		"compile-web": "webpack",
+		"watch-web": "webpack --watch",
+		"package-web": "webpack --mode production --devtool hidden-source-map",
+		"lint": "eslint src --ext ts",
+		"run-in-browser": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ."
+	},
+	"devDependencies": {
+		"@types/mocha": "^9.0.0",
+		"@types/vscode": "^1.64.0",
+		"@types/webpack-env": "^1.16.2",
+		"@typescript-eslint/eslint-plugin": "^5.1.0",
+		"@typescript-eslint/parser": "^5.1.0",
+		"@vscode/test-web": "^0.0.15",
+		"assert": "^2.0.0",
+		"eslint": "^8.1.0",
+		"mocha": "^9.1.3",
+		"process": "^0.11.10",
+		"ts-loader": "^9.2.5",
+		"typescript": "^4.4.4",
+		"webpack": "^5.52.1",
+		"webpack-cli": "^4.8.0"
+	},
+	"dependencies": {
+		"express": "^4.17.3"
+	}
+}
