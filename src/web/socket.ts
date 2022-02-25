@@ -98,7 +98,7 @@ export function sendMessage() {
 
     socket.onerror = function (error) {
         vscode.window.showErrorMessage(
-            "An error occurred. Check if connection port matches the one from the server."
+            "An error occurred. Check if connection server is running and/or port matches the one from the server."
         );
     };
 }
