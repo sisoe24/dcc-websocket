@@ -5,6 +5,10 @@
 	"version": "0.0.2",
 	"preview": true,
 	"publisher": "virgilsisoe",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sisoe24/dcc-websocket"
+	},
 	"engines": {
 		"vscode": "^1.64.0"
 	},
