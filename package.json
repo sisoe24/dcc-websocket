@@ -3,6 +3,8 @@
 	"displayName": "DCC Websocket",
 	"description": "Websocket connection to send code into your favorite DCC Package",
 	"version": "0.0.1",
+	"preview": true,
+	"publisher": "virgilsisoe",
 	"engines": {
 		"vscode": "^1.64.0"
 	},
@@ -17,7 +19,6 @@
 		"3DS",
 		"Blender"
 	],
-	"preview": true,
 	"activationEvents": [
 		"onStartupFinished"
 	],
@@ -26,7 +27,8 @@
 		"commands": [
 			{
 				"command": "dcc-websocket.sendCode",
-				"title": "Send code to socket",
+				"title": "Send code",
+				"category": "DCC",
 				"icon": {
 					"dark": "images/play-dark.svg",
 					"light": "images/play-light.svg"
@@ -38,38 +40,24 @@
 			{
 				"title": "DCC WebSocket",
 				"properties": {
-					"nukeTools.network.host": {
-						"type": "string",
-						"default": "localhost",
-						"markdownDescription": "Specify the host for the connection."
-					},
-					"nukeTools.network.port": {
+					"dccWebSocket.network.port": {
 						"type": "string",
 						"default": "54321",
 						"markdownDescription": "Specify the port for the connection."
 					},
-					"nukeTools.other.clearPreviousOutput": {
+					"dccWebSocket.other.clearPreviousOutput": {
 						"type": "boolean",
 						"default": true,
 						"markdownDescription": "Clear output after each code execution."
 					},
-					"nukeTools.network.debug": {
+					"dccWebSocket.network.debug": {
 						"type": "boolean",
 						"default": false,
 						"markdownDescription": "Show debugging information the in output window."
 					}
 				}
 			}
-		],
-		"menus": {
-			"editor/title": [
-				{
-					"when": "resourceLangId =~ /python|cpp/ || resourceExtname == .blink || resourceScheme == untitled",
-					"command": "dcc-websocket.sendCode",
-					"group": "navigation"
-				}
-			]
-		}
+		]
 	},
 	"scripts": {
 		"test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
