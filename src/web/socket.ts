@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import * as utils from "./utils";
 
-const outputWindow = vscode.window.createOutputChannel("DCC WebSocket");
+export const outputWindow = vscode.window.createOutputChannel("DCC WebSocket");
 
 /**
  * Write received data from the socket to the output window.
@@ -71,7 +71,7 @@ export function sendMessage() {
         return null;
     }
 
-    const hostname = utils.nukeToolsConfig("network.host");
+    const hostname = "localhost";
     const port = utils.nukeToolsConfig("network.port");
     writeDebugNetwork(`Establish Connection to: ${hostname}:${port}`);
     const socket = new WebSocket(`ws://${hostname}:${port}`);
