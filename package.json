@@ -34,6 +34,11 @@
 					"light": "images/play-light.svg"
 				},
 				"enablement": "resourceLangId =~ /python|cpp/ || resourceExtname == .blink || resourceScheme == untitled"
+			},
+			{
+				"command": "dcc-websocket.addPythonStubs",
+				"title": "Add Python Stubs",
+				"category": "DCC"
 			}
 		],
 		"configuration": [
@@ -86,6 +91,7 @@
 		"webpack-cli": "^4.8.0"
 	},
 	"dependencies": {
-		"express": "^4.17.3"
+		"express": "^4.17.3",
+		"path": "^0.12.7"
 	}
 }
