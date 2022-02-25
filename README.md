@@ -15,7 +15,7 @@ WebSocket connection to send messages to a localhost machine client.
     - [1.7.3. `dccWebSocket.network.debug`](#173-dccwebsocketnetworkdebug)
   - [1.8. Known issues](#18-known-issues)
 
-![VscodeWeb]()
+![VscodeWeb](https://raw.githubusercontent.com/sisoe24/dcc-websocket/main/images/vscode-web.gif)
 
 ## 1.1. Disclaimer
 
