@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import * as path from "path";
+import { outputWindow } from "./socket";
 
 /**
  * Get the stubs path inside the rootDir.
@@ -8,6 +9,7 @@ import * as path from "path";
  */
 export function getStubsPath(): string {
     const currentPath = vscode.extensions.getExtension("virgilsisoe.dcc-websocket")?.extensionPath;
+    outputWindow.appendLine(`-> extension path ${currentPath}`);
 
     if (currentPath) {
         return path.join(currentPath, "nuke_stubs");
@@ -98,13 +100,13 @@ export function updateAnalysisPath(extraPaths: string[], stubsPath: string): voi
 
 /**
  * Correct extraPath analysis entry.
- * 
+ *
  * When updating the extension, workspace `python.analysis.extraPath` would point
  * to the old path, thus breaking the stubs path. This functions aims to update the
- * path each time vscode would reload. 
- * 
+ * path each time vscode would reload.
+ *
  * XXX: Should find a more stable way, like having the stubs path in a different path.
- * 
+ *
  * TODO: testing
  */
 export function correctAnalysisPath(): void {
@@ -133,6 +135,8 @@ export function addStubsPath(): boolean {
     }
 
     const config = vscode.workspace.getConfiguration("python.analysis");
+    outputWindow.appendLine(`debug -> config ${config}`);
+
     const extraPaths = config.get("extraPaths") as Array<string>;
 
     updateAnalysisPath(extraPaths, getStubsPath());

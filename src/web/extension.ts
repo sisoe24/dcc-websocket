@@ -3,7 +3,7 @@ import { sendMessage } from "./socket";
 import { addStubsPath, correctAnalysisPath } from "./stubs";
 
 export function activate(context: vscode.ExtensionContext) {
-    correctAnalysisPath();
+    // correctAnalysisPath();
 
     context.subscriptions.push(
         vscode.commands.registerCommand("dcc-websocket.addPythonStubs", () => {
