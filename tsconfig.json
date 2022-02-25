@@ -18,6 +18,7 @@
 	"exclude": [
 		"node_modules",
 		".vscode-test-web",
-		"demo"
+		"demo",
+		"nuke_stubs"
 	]
 }
