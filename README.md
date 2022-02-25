@@ -1,6 +1,6 @@
 # 1. dcc-websocket-web README
 
-WebSocket connection to send messages to a localhost machine client.
+WebSocket connection to send messages to a localhost machine client from Visual Studio Code Browser application: <https://vscode.dev>.
 
 - [1. dcc-websocket-web README](#1-dcc-websocket-web-readme)
   - [1.1. Disclaimer](#11-disclaimer)
@@ -19,8 +19,7 @@ WebSocket connection to send messages to a localhost machine client.
 
 ## 1.1. Disclaimer
 
-- This extension is mainly for the Visual Studio Code Browser application: <https://vscode.dev>
-- Although the name of the extension contains the word DCC, currently at the time of writing, it has no unique features for it.
+Although the name of the extension contains the word DCC, currently at the time of writing, it has no unique features for it.
 
 ## 1.2. Description
 
