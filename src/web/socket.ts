@@ -73,11 +73,11 @@ export function sendMessage() {
 
     const hostname = utils.nukeToolsConfig("network.host");
     const port = utils.nukeToolsConfig("network.port");
+    writeDebugNetwork(`Establish Connection to: ${hostname}:${port}`);
     const socket = new WebSocket(`ws://${hostname}:${port}`);
 
     socket.onopen = function (e) {
-        writeDebugNetwork(`[open] Connection established: ${hostname}:${port}`);
-        writeDebugNetwork("Sending to server");
+        writeDebugNetwork(`Connection established! Send to server...`);
         socket.send(prepareMessage(editor));
     };
 
@@ -89,16 +89,16 @@ export function sendMessage() {
     socket.onclose = function (event) {
         if (event.wasClean) {
             writeDebugNetwork(
-                `[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`
+                `Connection closed cleanly, code=${event.code} reason=${event.reason}`
             );
         } else {
-            // e.g. server process killed or network down
-            // event.code is usually 1006 in this case
-            writeDebugNetwork("[close] Connection died");
+            writeDebugNetwork("Connection died");
         }
     };
 
     socket.onerror = function (error) {
-        writeDebugNetwork(`[error] ${error.message}`);
+        vscode.window.showErrorMessage(
+            "An error occurred. Check if connection port matches the one from the server."
+        );
     };
 }
