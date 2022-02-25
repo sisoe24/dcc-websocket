@@ -36,7 +36,7 @@ If you are a Nuke user, you can use [NukeServerSocket](https://github.com/sisoe2
 
 ## 1.4. Usage
 
-Once the server is up and running, you should specify the server port in the extension settings. Then you can send the code via the button in the toolbar, or by using the [command](#16-available-extension-commands) from the command palette: `DCC: Send Code`.
+Once the server is up and running, you should specify the server port in the extension settings. Then you can send the code via the [command](#16-available-extension-commands) from the command palette: `DCC: Send Code`.
 
 ## 1.5. Make your own WebSocket client
 
