@@ -40,8 +40,8 @@
 				"enablement": "resourceLangId =~ /python|cpp/ || resourceExtname == .blink || resourceScheme == untitled"
 			},
 			{
-				"command": "dcc-websocket.addPythonStubs",
-				"title": "Add Python Stubs",
+				"command": "dcc-websocket.developerDebugCommand",
+				"title": "Developer command for testing purposes.",
 				"category": "DCC"
 			}
 		],
