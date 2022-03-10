@@ -1,9 +1,11 @@
 # Change Log
 
-All notable changes to the "dcc-websocket-web" extension will be documented in this file.
+## [0.0.5]
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+### Fixed
 
-## [Unreleased]
+- Fixed wrong setting name that did not allow to send code.
 
-- Initial release
+## [0.0.1]
+
+- Initial release.
