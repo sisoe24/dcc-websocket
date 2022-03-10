@@ -8,8 +8,8 @@ import * as vscode from "vscode";
  * @param property - name of the configuration property to get.
  * @returns - the value of the property.
  */
-export function nukeToolsConfig(property: string): string {
-    const config = vscode.workspace.getConfiguration("nukeTools");
+export function extensionConfig(property: string): string {
+    const config = vscode.workspace.getConfiguration("dccWebSocket");
     const subConfig = config.get(property);
 
     if (typeof subConfig === "undefined") {

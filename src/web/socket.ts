@@ -11,7 +11,7 @@ export const outputWindow = vscode.window.createOutputChannel("DCC WebSocket");
  * @param showDebug if true, the output window will not be cleared despite the settings.
  */
 export function writeToOutputWindow(data: string, filePath: string, showDebug: boolean): string {
-    if (utils.nukeToolsConfig("other.clearPreviousOutput") && !showDebug) {
+    if (utils.extensionConfig("other.clearPreviousOutput") && !showDebug) {
         outputWindow.clear();
     }
 
@@ -48,13 +48,12 @@ export function prepareMessage(editor: vscode.TextEditor): string {
 /**
  *  Write debug information to the output window.
  *
- * @param showDebug if true, will output debug information to the output window.
  * @param data text data to write into the output window.
  */
 function writeDebugNetwork(data: string): string {
     let msg = "";
 
-    if (utils.nukeToolsConfig("network.debug")) {
+    if (utils.extensionConfig("network.debug")) {
         const timestamp = new Date();
         msg = `[${timestamp.toISOString()}] - ${data}`;
         outputWindow.appendLine(msg);
@@ -72,7 +71,7 @@ export function sendMessage() {
     }
 
     const hostname = "localhost";
-    const port = utils.nukeToolsConfig("network.port");
+    const port = utils.extensionConfig("network.port");
     writeDebugNetwork(`Establish Connection to: ${hostname}:${port}`);
     const socket = new WebSocket(`ws://${hostname}:${port}`);
 
