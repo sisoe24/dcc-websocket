@@ -21,6 +21,8 @@ WebSocket connection to send messages to a localhost machine client from Visual 
 
 Although the name of the extension contains the word DCC, currently at the time of writing, it has no unique features for it.
 
+Also, this extension is in very early development stage, where I am mostly experimenting things with vscode-dev.
+
 ## 1.2. Description
 
 A WebSocket client that allows to send messages to the localhost from Visual Studio Code Web application. This can be used to code on the fly on machines that you are not allowed to install external applications but still need a decent text editor.
