@@ -10,18 +10,14 @@ WebSocket connection to send messages to a localhost machine client from Visual 
   - [1.5. Make your own WebSocket client](#15-make-your-own-websocket-client)
   - [1.6. Available Extension Commands](#16-available-extension-commands)
   - [1.7. Extension Settings](#17-extension-settings)
-    - [1.7.1. `dccWebSocket.network.port`](#171-dccwebsocketnetworkport)
-    - [1.7.2. `dccWebSocket.other.clearPreviousOutput`](#172-dccwebsocketotherclearpreviousoutput)
-    - [1.7.3. `dccWebSocket.network.debug`](#173-dccwebsocketnetworkdebug)
   - [1.8. Known issues](#18-known-issues)
 
 ![VscodeWeb](https://raw.githubusercontent.com/sisoe24/dcc-websocket/main/images/vscode-web.gif)
 
 ## 1.1. Disclaimer
 
-Although the name of the extension contains the word DCC, currently at the time of writing, it has no unique features for it.
-
-Also, this extension is in very early development stage, where I am mostly experimenting things with vscode-dev.`
+- The name of the extension contains the word DCC, but currently, it has no unique features for it.
+- The extension is in very early development stage, where I am mostly experimenting things with vscode.dev.
 
 ## 1.2. Description
 
@@ -99,17 +95,17 @@ Example `keybindings.json`:
 
 ## 1.7. Extension Settings
 
-### 1.7.1. `dccWebSocket.network.port`
+- `dccWebSocket.network.port`
 
-Specify the server port for the connection.
+  Specify the server port for the connection.
 
-### 1.7.2. `dccWebSocket.other.clearPreviousOutput`
+- `dccWebSocket.other.clearPreviousOutput`
 
-Clear previous console output before next code execution.
+  Clear previous console output before next code execution.
 
-### 1.7.3. `dccWebSocket.network.debug`
+- `dccWebSocket.network.debug`
 
-Show network debug information in the output window. Enabling this option, will prevent the console from being cleared after code execution.
+  Show network debug information in the output window. Enabling this option, will prevent the console from being cleared after code execution.
 
 ## 1.8. Known issues
 
