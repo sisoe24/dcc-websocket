@@ -2,7 +2,7 @@
 	"name": "dcc-websocket",
 	"displayName": "DCC Websocket",
 	"description": "Websocket connection to send code into your favorite DCC Package",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"preview": true,
 	"publisher": "virgilsisoe",
 	"repository": {
