@@ -21,7 +21,7 @@ WebSocket connection to send messages to a localhost machine client from Visual 
 
 Although the name of the extension contains the word DCC, currently at the time of writing, it has no unique features for it.
 
-Also, this extension is in very early development stage, where I am mostly experimenting things with vscode-dev.
+Also, this extension is in very early development stage, where I am mostly experimenting things with vscode-dev.`
 
 ## 1.2. Description
 
