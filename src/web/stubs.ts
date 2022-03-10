@@ -136,10 +136,12 @@ export function addStubsPath(): boolean {
 
     const config = vscode.workspace.getConfiguration("python.analysis");
     outputWindow.appendLine(`debug -> config ${config}`);
-
+    
     const extraPaths = config.get("extraPaths") as Array<string>;
-
+    
     updateAnalysisPath(extraPaths, getStubsPath());
+    outputWindow.appendLine(`debug -> config ${getStubsPath()}`);
+
     config.update("extraPaths", extraPaths);
     return true;
 }

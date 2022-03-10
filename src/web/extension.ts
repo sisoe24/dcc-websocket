@@ -6,7 +6,7 @@ export function activate(context: vscode.ExtensionContext) {
     // correctAnalysisPath();
 
     context.subscriptions.push(
-        vscode.commands.registerCommand("dcc-websocket.addPythonStubs", () => {
+        vscode.commands.registerCommand("dcc-websocket.developerDebugCommand", () => {
             addStubsPath();
         })
     );
