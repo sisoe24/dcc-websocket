@@ -95,7 +95,7 @@
 		"webpack-cli": "^4.8.0"
 	},
 	"dependencies": {
-		"express": "^4.17.3",
+		"express": "^4.21.0",
 		"path": "^0.12.7"
 	}
 }
