@@ -1,15 +1,26 @@
-import * as assert from 'assert';
+import * as assert from "assert";
+import * as vscode from "vscode";
+import { prepareMessage } from "../../socket";
 
-// You can import and use all API from the 'vscode' module
-// as well as import your extension to test it
-import * as vscode from 'vscode';
-// import * as myExtension from '../../extension';
+// Minimal editor stub: prepareMessage only reads the document and the selection.
+function fakeEditor(fileText: string, selectedText: string): vscode.TextEditor {
+    return {
+        selection: {},
+        document: {
+            fileName: "/tmp/script.py",
+            getText: (range?: unknown) => (range ? selectedText : fileText),
+        },
+    } as unknown as vscode.TextEditor;
+}
 
-suite('Web Extension Test Suite', () => {
-	vscode.window.showInformationMessage('Start all tests.');
+suite("prepareMessage", () => {
+    test("sends only the selection when text is selected", () => {
+        const msg = JSON.parse(prepareMessage(fakeEditor("print(1)\nprint(2)", "print(2)")));
+        assert.deepStrictEqual(msg, { file: "/tmp/script.py", text: "print(2)" });
+    });
 
-	test('Sample test', () => {
-		assert.strictEqual(-1, [1, 2, 3].indexOf(5));
-		assert.strictEqual(-1, [1, 2, 3].indexOf(0));
-	});
+    test("sends the whole file when nothing is selected", () => {
+        const msg = JSON.parse(prepareMessage(fakeEditor("print(1)\nprint(2)", "")));
+        assert.deepStrictEqual(msg, { file: "/tmp/script.py", text: "print(1)\nprint(2)" });
+    });
 });

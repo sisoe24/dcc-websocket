@@ -8,6 +8,8 @@ vsc-extension-quickstart.md
 webpack.config.js
 .yarnrc
 **/tsconfig.json
-**/.eslintrc.json
+eslint.config.mjs
 **/*.map
 **/*.ts
+dist/web/test/**
+images/vscode-web.gif
