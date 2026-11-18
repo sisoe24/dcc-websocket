@@ -11,6 +11,8 @@ permissions:
 jobs:
   ci:
     runs-on: ubuntu-latest
+    # A failed browser launch leaves the test server running; do not wait 6 hours.
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v5
 
@@ -29,4 +31,5 @@ jobs:
       # npm may skip playwright's install script, so fetch the browser explicitly.
       - run: npx playwright install --with-deps chromium
 
-      - run: npm test
+      # No X server on the runner; test-web 0.0.81 launches headed unless told.
+      - run: npm test -- --headless
