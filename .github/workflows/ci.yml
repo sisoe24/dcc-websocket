@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    # A failed browser launch leaves the test server running; do not wait 6 hours.
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run lint
+
+      # Production build, the same one `vsce package` ships.
+      - run: npm run package-web
+
+      # npm may skip playwright's install script, so fetch the browser explicitly.
+      - run: npx playwright install --with-deps chromium
+
+      # No X server on the runner; test-web 0.0.81 launches headed unless told.
+      - run: npm test -- --headless

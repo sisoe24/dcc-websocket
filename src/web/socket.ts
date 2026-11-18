@@ -8,13 +8,8 @@ export const outputWindow = vscode.window.createOutputChannel("DCC WebSocket");
  *
  * @param data text data to write into the output window.
  * @param filePath path to the file that is being executed.
- * @param showDebug if true, the output window will not be cleared despite the settings.
  */
-export function writeToOutputWindow(data: string, filePath: string, showDebug: boolean): string {
-    if (utils.extensionConfig("other.clearPreviousOutput") && !showDebug) {
-        outputWindow.clear();
-    }
-
+export function writeToOutputWindow(data: string, filePath: string): string {
     const msg = `> Executing: ${filePath}\n${data}`;
 
     outputWindow.appendLine(msg);
@@ -61,31 +56,45 @@ function writeDebugNetwork(data: string): string {
     return msg;
 }
 
+// Last open socket. Closed on the next send so connections do not pile up,
+// while a server can still stream several replies for one send.
+let socket: WebSocket | undefined;
+
 /**
  * Send data over websocket connection.
  */
 export function sendMessage() {
     const editor = vscode.window.activeTextEditor;
     if (!editor) {
-        return null;
+        return;
     }
+
+    socket?.close();
 
     const hostname = "localhost";
     const port = utils.extensionConfig("network.port");
-    writeDebugNetwork(`Establish Connection to: ${hostname}:${port}`);
-    const socket = new WebSocket(`ws://${hostname}:${port}`);
+    const showDebug = Boolean(utils.extensionConfig("network.debug"));
 
-    socket.onopen = function (e) {
+    // Debug mode keeps previous output so the network log stays readable.
+    if (utils.extensionConfig("other.clearPreviousOutput") && !showDebug) {
+        outputWindow.clear();
+    }
+
+    writeDebugNetwork(`Establish Connection to: ${hostname}:${port}`);
+    const ws = new WebSocket(`ws://${hostname}:${port}`);
+    socket = ws;
+
+    ws.onopen = function () {
         writeDebugNetwork(`Connection established! Send to server...`);
-        socket.send(prepareMessage(editor));
+        ws.send(prepareMessage(editor));
     };
 
-    socket.onmessage = function (event) {
-        writeToOutputWindow(event.data, editor.document.fileName, false);
+    ws.onmessage = function (event) {
+        writeToOutputWindow(event.data, editor.document.fileName);
         writeDebugNetwork(`[message] Data received from server: ${event.data}`);
     };
 
-    socket.onclose = function (event) {
+    ws.onclose = function (event) {
         if (event.wasClean) {
             writeDebugNetwork(
                 `Connection closed cleanly, code=${event.code} reason=${event.reason}`
@@ -95,7 +104,11 @@ export function sendMessage() {
         }
     };
 
-    socket.onerror = function (error) {
+    ws.onerror = function () {
+        // Closing a still-connecting socket from a previous send fires an error too.
+        if (socket !== ws) {
+            return;
+        }
         vscode.window.showErrorMessage(
             "An error occurred. Check if connection server is running and/or port matches the one from the server."
         );

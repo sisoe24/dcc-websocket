@@ -7,8 +7,5 @@
 		"out": true // set this to false to include "out" folder in search results
 	},
 	// Turn off tsc task auto detection since we have the necessary tasks as npm scripts
-	"typescript.tsc.autoDetect": "off",
-	"python.analysis.extraPaths": [
-		"/Users/virgil/.vscode/extensions/virgilsisoe.dcc-websocket-0.4.5/Nuke-Python-Stubs/nuke_stubs"
-	]
+	"typescript.tsc.autoDetect": "off"
 }
